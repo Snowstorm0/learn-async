@@ -6,6 +6,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 
@@ -62,6 +65,13 @@ public class AsyncService {
         sum = end - start;
         logger.info("\t 完成任务三   ");
         return sum;
+    }
+
+    // 使用 CompletableFuture 替代 Future
+    @Async
+    public CompletableFuture<Map<String, Object>> subByAsyncMap() throws Exception {
+        Map<String, Object> res = new HashMap<>();
+        return CompletableFuture.completedFuture(res);
     }
 
 }

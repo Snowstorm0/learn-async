@@ -48,6 +48,7 @@ public class AsyncConfig implements AsyncConfigurer {
         return threadPool;
     }
 
+    // 异常处理
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
