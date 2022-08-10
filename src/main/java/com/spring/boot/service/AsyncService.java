@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -72,6 +75,16 @@ public class AsyncService {
     public CompletableFuture<Map<String, Object>> subByAsyncMap() throws Exception {
         Map<String, Object> res = new HashMap<>();
         return CompletableFuture.completedFuture(res);
+    }
+
+    // 使用定时任务调用此方法创建线程
+    @Async
+    public void learnScheduledAsync(){
+        Long timeLong = System.currentTimeMillis();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //设置格式
+        String timeString = timeFormat.format(timeLong);
+        System.out.println("线程" + Thread.currentThread().getName());
+        System.out.println("timeString:" + timeString + "\n");
     }
 
 }
